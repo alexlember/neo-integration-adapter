@@ -1,7 +1,7 @@
 package ru.lember.neointegrationadapter.handler.projectA;
 
 import lombok.extern.slf4j.Slf4j;
-import reactor.core.publisher.EmitterProcessor;
+import reactor.core.publisher.ReplayProcessor;
 import reactor.core.publisher.FluxProcessor;
 import ru.lember.neointegrationadapter.handler.Handler;
 import ru.lember.neointegrationadapter.handler.Reader;
@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class TestReader1 implements Reader {
 
-    private EmitterProcessor<Message> processor = EmitterProcessor.create();
+    private ReplayProcessor<Message> processor = ReplayProcessor.create();
 
     private final Handler next;
 

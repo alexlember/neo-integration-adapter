@@ -1,7 +1,7 @@
 package ru.lember.neointegrationadapter.handler.projectA;
 
 import lombok.extern.slf4j.Slf4j;
-import reactor.core.publisher.EmitterProcessor;
+import reactor.core.publisher.ReplayProcessor;
 import reactor.core.publisher.FluxProcessor;
 import ru.lember.neointegrationadapter.handler.Handler;
 import ru.lember.neointegrationadapter.handler.Mapper;
@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 @Slf4j
 public class TestMapper15 implements Mapper {
 
-    private EmitterProcessor<Message> processor = EmitterProcessor.create();
+    private ReplayProcessor<Message> processor = ReplayProcessor.create();
 
     private final Handler next;
 
@@ -26,7 +26,7 @@ public class TestMapper15 implements Mapper {
         log.info("TestMapper15 initialized");
         processor.subscribe(m -> {
             if (m.getEntity() instanceof String) {
-                String modified = m.getEntity() + "_B15";
+                String modified = m.getEntity() + "_B15!";
                 next.processor().onNext(SimpleMessage.of(m.getId()).andEntity(modified));
             }
         }, e -> {

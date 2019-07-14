@@ -2,8 +2,8 @@ package ru.lember.neointegrationadapter.handler.projectA;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import reactor.core.publisher.EmitterProcessor;
 import reactor.core.publisher.FluxProcessor;
+import reactor.core.publisher.ReplayProcessor;
 import ru.lember.neointegrationadapter.handler.Writer;
 import ru.lember.neointegrationadapter.message.Message;
 
@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 @NoArgsConstructor
 public class TestWriter2 implements Writer {
 
-    private EmitterProcessor<Message> processor = EmitterProcessor.create();
+    private ReplayProcessor<Message> processor = ReplayProcessor.create();
 
     @PostConstruct
     private void postConstruct() {
